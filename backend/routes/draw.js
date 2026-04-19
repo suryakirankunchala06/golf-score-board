@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const Draw = require("../models/Draw");
 
-// ================= RUN DRAW =================
+// RUN DRAW 
 router.get("/run", async (req, res) => {
   try {
     const numbers = Array.from({ length: 5 }, () =>
@@ -53,7 +53,7 @@ router.get("/run", async (req, res) => {
   }
 });
 
-// ================= GET PREVIOUS DRAWS =================
+// GET PREVIOUS DRAWS 
 router.get("/history", async (req, res) => {
   try {
     const draws = await Draw.find().sort({ date: -1 });

@@ -1,10 +1,10 @@
-const API = "https://golf-score-board-backend.onrender.com/api";
-// ================= TOKEN =================
+const API = "https://golf-score-board-backend.onrender.com";
+// TOKEN
 function getToken() {
   return localStorage.getItem("token");
 }
 
-// ================= REGISTER =================
+//  REGISTER
 async function register() {
   const res = await fetch(API + "/auth/register", {
     method: "POST",
@@ -18,7 +18,7 @@ async function register() {
   alert(await res.text());
 }
 
-// ================= LOGIN =================
+//  LOGIN 
 async function login() {
   const res = await fetch(API + "/auth/login", {
     method: "POST",
@@ -40,19 +40,19 @@ async function login() {
   window.location = "dashboard.html";
 }
 
-// ================= PASSWORD =================
+// PASSWORD 
 function togglePassword() {
   const input = document.getElementById("password");
   input.type = input.type === "password" ? "text" : "password";
 }
 
-// ================= LOGOUT =================
+//  LOGOUT 
 function logout() {
   localStorage.removeItem("token");
   window.location = "index.html";
 }
 
-// ================= PAYMENT =================
+// PAYMENT 
 async function pay(plan) {
   await fetch(API + "/user/subscribe", {
     method: "POST",
@@ -63,7 +63,7 @@ async function pay(plan) {
   window.location = "dashboard.html";
 }
 
-// ================= ADD SCORE =================
+//  ADD SCORE
 async function addScore() {
   const res = await fetch(API + "/user/score", {
     method: "POST",
@@ -81,7 +81,7 @@ async function addScore() {
   getScores();
 }
 
-// ================= DELETE SCORE =================
+//  DELETE SCORE 
 async function deleteScore(date) {
   await fetch(API + "/user/delete-score", {
     method: "POST",
@@ -95,7 +95,7 @@ async function deleteScore(date) {
   getScores();
 }
 
-// ================= GET SCORES =================
+// GET SCORES 
 async function getScores() {
   const res = await fetch(API + "/user/scores", {
     headers: { Authorization: getToken() }
@@ -120,7 +120,7 @@ async function getScores() {
   document.getElementById("scoresList").innerHTML = html;
 }
 
-// ================= DRAW =================
+// DRAW 
 let drawDone = false;
 
 // MANUAL DRAW (button)
@@ -147,7 +147,7 @@ async function autoDraw() {
   drawDone = true;
 }
 
-// ================= TIMER =================
+// TIMER 
 function startTimer() {
   setInterval(() => {
     const now = new Date();
@@ -173,7 +173,6 @@ function startTimer() {
   }, 1000);
 }
 
-// ================= LOAD =================
 if (window.location.pathname.includes("dashboard.html")) {
   getScores();
   startTimer();

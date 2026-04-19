@@ -2,15 +2,13 @@ const router = require("express").Router();
 const User = require("../models/User");
 const auth = require("../middleware/auth");
 
-// ================= ADD SCORE =================
+// ADD SCORE 
 router.post("/score", auth, async (req, res) => {
   try {
     let { score, date } = req.body;
 
-    // convert score to number
     score = Number(score);
 
-    // VALIDATION (FIXES null issue permanently)
     if (!score || isNaN(score) || score < 1 || score > 45) {
       return res.send("Score must be between 1 and 45");
     }
@@ -21,14 +19,12 @@ router.post("/score", auth, async (req, res) => {
 
     const user = await User.findById(req.user.id);
 
-    // prevent duplicate date
     if (user.scores.find(s => s.date === date)) {
       return res.send("Score already exists for this date");
     }
 
     user.scores.push({ score, date });
 
-    // keep only last 5 scores
     if (user.scores.length > 5) {
       user.scores.shift();
     }
@@ -43,12 +39,11 @@ router.post("/score", auth, async (req, res) => {
   }
 });
 
-// ================= GET SCORES =================
+// GET SCORES 
 router.get("/scores", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 
-    // remove bad/null data automatically
     const cleanScores = user.scores.filter(s => s.score && s.date);
 
     res.json(cleanScores);
@@ -59,7 +54,7 @@ router.get("/scores", auth, async (req, res) => {
   }
 });
 
-// ================= DELETE SCORE =================
+// DELETE SCORE 
 router.post("/delete-score", auth, async (req, res) => {
   try {
     const { date } = req.body;
@@ -78,7 +73,7 @@ router.post("/delete-score", auth, async (req, res) => {
   }
 });
 
-// ================= SUBSCRIBE =================
+//  SUBSCRIBE 
 router.post("/subscribe", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -95,7 +90,6 @@ router.post("/subscribe", auth, async (req, res) => {
   }
 });
 
-// ================= FIX BAD DATA (TEMP ROUTE) =================
 router.get("/fix", async (req, res) => {
   try {
     const users = await User.find();
