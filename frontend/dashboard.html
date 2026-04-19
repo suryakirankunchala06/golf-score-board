@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+<div class="header">
+  <h2>Dashboard</h2>
+
+  <div class="header-buttons">
+    <button class="logout" onclick="logout()">Logout</button>
+    <button class="subscribe" onclick="window.location='payment.html'">Subscribe</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <h3>Add Score</h3>
+
+  <input id="score" placeholder="Score (1-45)">
+  <input id="date" type="date">
+
+  <button class="add-btn" onclick="addScore()">Add Score</button>
+
+  <h3>Your Scores</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="scoresList"></tbody>
+  </table>
+
+  <!-- ✅ RUN DRAW BUTTON BACK -->
+  <button class="draw-btn" onclick="runDraw()">Run Draw</button>
+
+  <!-- DRAW RESULT BOX -->
+  <div class="draw-box">
+    <h3>Today’s Winning Number</h3>
+    <p id="drawNumbers">Waiting for draw...</p>
+
+    <h4>Draw Countdown</h4>
+    <p id="timer">--:--:--</p>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
