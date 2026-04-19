@@ -1,4 +1,4 @@
-const API = "https://golf-score-board-backend.onrender.com";
+const API = "https://golf-score-board-backend.onrender.com/api";
 // TOKEN
 function getToken() {
   return localStorage.getItem("token");
