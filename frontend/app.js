@@ -1,5 +1,4 @@
-const API = "http://127.0.0.1:5000/api";
-
+const API = "https://golf-score-board-backend.onrender.com/api";
 // ================= TOKEN =================
 function getToken() {
   return localStorage.getItem("token");
