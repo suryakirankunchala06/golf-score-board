@@ -58,9 +58,7 @@ Current implementation simulates payment processing.
 ### Database
 - MongoDB Atlas
 
-### Deployment
-- Vercel
-- Render
+
 
 ---
 
