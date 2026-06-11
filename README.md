@@ -1,4 +1,4 @@
-# 🏌️ GolfScore Pro
+# 🏌️ golf-score-board
 
 A full-stack web application for managing golf scores, subscriptions, and daily draw participation.
 
